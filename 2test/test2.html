@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Center Moving Image</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body, html {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .center-image {
+        max-width: 80%;
+        max-height: 80%;
+        animation: moveImage 3s infinite alternate ease-in-out;
+    }
+    
+    @keyframes moveImage {
+        0% { transform: translateX(-10px) translateY(-10px); }
+        100% { transform: translateX(10px) translateY(10px); }
+    }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="your-image.jpg" alt="Centered Image" class="center-image">
+    </div>
+    <script src="test2.js"></script>
+</body>
+</html>

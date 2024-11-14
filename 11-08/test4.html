@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Ghibli Carousel with Scroll Character</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    /* 기본 스타일 */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* 페이지 기본 설정 */
+    body, html {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f2efe4;
+        font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+        overflow-y: scroll;
+    }
+
+    /* 섹션 스타일 */
+    .section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 30px 0;
+    }
+
+    .intro-section {
+        width:100%;
+        height:100%;
+        background-color: #e6f7ff;
+        object-fit: cover;
+    }
+
+    /* 소개란 스타일 */
+    .intro-container {
+        width: 80%;
+        max-width: 700px;
+        background-color: rgba(255, 255, 240, 0.9);
+        padding: 30px;
+        box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+        border: 2px solid #c1e1ec;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .intro-title {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: #5d4037;
+        font-family: 'Garamond', 'Papyrus', sans-serif;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+
+    .intro-description {
+        font-size: 1.1rem;
+        color: #5d4037;
+        margin-top: 10px;
+        line-height: 1.7;
+    }
+
+    .carousel-section {
+        background-color: #ffe8e8;
+    }
+
+    .carousel-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 80%;
+        max-width: 700px;
+        padding: 20px;
+        background-color: rgba(250, 245, 235, 0.95);
+        border-radius: 15px;
+        border: 2px solid #f5c6c6;
+        box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .carousel-image {
+        max-width: 100%;
+        max-height: 100%;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        border: 2px solid #d4b483;
+        border-radius: 10px;
+        filter: brightness(0.9);
+    }
+
+    .carousel-image:hover {
+        transform: scale(1.05);
+        filter: brightness(1);
+    }
+
+    .carousel-button {
+        background-color: transparent;
+        border: none;
+        font-size: 2.5rem;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6b4226;
+        transition: transform 0.3s;
+    }
+
+    #prevBtn {
+        left: -40px;
+    }
+
+    #nextBtn {
+        right: -40px;
+    }
+
+    .carousel-button:active {
+        transform: translateY(-50%) scale(1.2);
+    }
+
+    /* 스크롤바 스타일 */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f5e1d5;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #d3b3a5;
+        border-radius: 10px;
+        border: 2px solid #f5e1d5;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #b28d7a;
+    }
+
+    /* 스크롤 캐릭터 이미지 스타일 */
+    .scroll-character {
+        position: fixed;
+        right: 15px; /* 스크롤바와 약간의 거리 */
+        bottom: 30px;
+        width: 50px;
+        height: 50px;
+        opacity: 0.8;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .scroll-character:hover {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    /*배경 이미지 섹션 */
+    .product-title {
+    text-align:center;
+    display:table;
+    border:1px solid #cecece;
+    width:280px;
+    height:250px;
+    }
+
+    .product-img-div {
+    display:table-cell;
+    vertical-align:middle;
+    }
+
+    .product-img {
+    max-width:180px;
+    max-height:180px;
+    }
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- 소개란 섹션 -->
+<div class="product-title">
+    <div class="product-img-div">
+        <img class="product-img">
+        <img src="gif-4.gif" alt="Background-image" class="Background-image" id="Background-image">    
+    <div class="section intro-section">
+        <div class="intro-container">
+            <div class="intro-title">Studio Ghibli</div>
+            <div class="intro-description">
+                Studio Ghibli는 세계적으로 사랑받는 일본의 애니메이션 스튜디오로, 감동적이고 아름다운 스토리텔링으로 잘 알려져 있습니다. 대표작으로는 <em>My Neighbor Totoro</em>, <em>Spirited Away</em> 등이 있으며, 자연과 조화를 이루는 이야기를 통해 전 세계의 마음을 사로잡았습니다.
+            </div>
+        
+        </div>
+    </div>
+    </div>
+</div>
+
+    <!-- 캐러셀 섹션 -->
+    <div class="section carousel-section">
+        <div class="carousel-container">
+            <button class="carousel-button" id="prevBtn">&#9664;</button>
+            <img src="1.jpg" alt="Carousel Image" class="carousel-image" id="carouselImage">
+            <button class="carousel-button" id="nextBtn">&#9654;</button>
+        </div>
+    </div>
+
+    <!-- 스크롤 캐릭터 이미지 -->
+    <img src="gif-1.gif" alt="Scroll Character" class="scroll-character">
+
+    <script src="b.js"></script>
+</body>
+</html>

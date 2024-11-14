@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f4e7; /* 따뜻한 배경색 */
+    font-family: 'Cursive', sans-serif; /* 부드러운 글꼴 */
+    overflow: hidden;
+}
+
+/* 지브리 스타일 소개 섹션 */
+.intro-container {
+    width: 80%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 240, 0.9); /* 약간 투명한 아이보리 배경 */
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+    border: 2px solid #d4b483; /* 따뜻한 갈색 테두리 */
+    border-radius: 15px; /* 둥근 모서리 */
+    text-align: center;
+}
+
+.intro-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6b4226; /* 따뜻한 갈색 텍스트 */
+    font-family: 'Papyrus', sans-serif; /* 고전적이고 동화 같은 글꼴 */
+}
+
+.intro-description {
+    font-size: 1rem;
+    color: #6b4226;
+    margin-top: 10px;
+    line-height: 1.6; /* 가독성을 위한 줄 간격 */
+}
+
+/* 지브리 스타일 캐러셀 */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: rgba(255, 255, 240, 0.8); /* 캐러셀 배경 */
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #d4b483;
+}
+
+.carousel-image {
+    max-width: 80%;
+    max-height: 80%;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    border: 2px solid #d4b483; /* 이미지에 테두리 추가 */
+    border-radius: 10px;
+}
+
+/* 버튼 스타일 */
+.carousel-button {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b4226; /* 따뜻한 갈색 버튼 색상 */
+}
+
+#prevBtn {
+    left: -30px;
+}
+
+#nextBtn {
+    right: -30px;
+}
+
+/* 이미지 움직임 효과 */
+.carousel-image:hover {
+    transform: scale(1.05); /* 이미지 확대 효과 */
+}
+</style>
+</head>
+<body>
+    <!-- 지브리 소개 섹션 -->
+    <div class="intro-container">
+        <div class="intro-title">지브리 소개</div>
+        <div class="intro-description">
+            지브리 스튜디오는 일본의 애니메이션 스튜디오로, 아름다운 작품과 감동적인 이야기로 유명합니다. 대표작으로는 <em>이웃집 토토로</em>, <em>센과 치히로의 행방불명</em> 등이 있습니다.
+        </div>
+    </div>
+
+    <!-- 캐러셀 섹션 -->
+    <div class="carousel-container">
+        <button class="carousel-button" id="prevBtn">&#9664;</button>
+        <img src="1.jpg" alt="Carousel Image" class="carousel-image" id="carouselImage">
+        <button class="carousel-button" id="nextBtn">&#9654;</button>
+    </div>
+    <script src="b.js"></script>
+</body>
+</html>

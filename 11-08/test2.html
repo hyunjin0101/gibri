@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f4e7;
+    font-family: 'Cursive', sans-serif;
+    overflow: hidden;
+}
+
+/* 섹션 스타일 */
+.section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+/* 지브리 소개 섹션 */
+.intro-section {
+    background-color: #e6f2ff; /* 파스텔 블루 */
+}
+
+.intro-container {
+    width: 80%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 240, 0.9);
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    border: 2px solid #b0c4de; /* 밝은 블루 테두리 */
+    border-radius: 15px;
+    text-align: center;
+}
+
+.intro-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6b4226;
+    font-family: 'Papyrus', sans-serif;
+}
+
+.intro-description {
+    font-size: 1rem;
+    color: #6b4226;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* 캐러셀 섹션 */
+.carousel-section {
+    background-color: #f9e1e1; /* 파스텔 핑크 */
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(255, 255, 240, 0.8);
+    border-radius: 15px;
+    border: 2px solid #f5c6c6;
+}
+
+.carousel-image {
+    max-width: 100%;
+    max-height: 100%;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    border: 2px solid #d4b483;
+    border-radius: 10px;
+}
+
+/* 버튼 스타일 */
+.carousel-button {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b4226;
+}
+
+#prevBtn {
+    left: -30px;
+}
+
+#nextBtn {
+    right: -30px;
+}
+
+/* 이미지 확대 효과 */
+.carousel-image:hover {
+    transform: scale(1.05);
+}
+
+@keyframes move2 {
+    from {
+        transform: translateX(0);
+        animation-timing-function: cubic-bezier(1,0,0.8,1);
+    }
+}
+
+</style>
+</head>
+<body>
+    <!-- 지브리 소개 섹션 -->
+    <div class="section intro-section">
+        <div class="intro-container">
+            <div class="intro-title">지브리 소개</div>
+            <div class="intro-description">
+                지브리 스튜디오는 일본의 애니메이션 스튜디오로, 아름다운 작품과 감동적인 이야기로 유명합니다. 대표작으로는 <em>이웃집 토토로</em>, <em>센과 치히로의 행방불명</em> 등이 있습니다.
+            </div>
+        </div>
+    </div>
+
+    <!-- 캐러셀 섹션 -->
+    <div class="section carousel-section">
+        <div class="carousel-container">
+            <button class="carousel-button" id="prevBtn">&#9664;</button>
+            <img src="1.jpg" alt="Carousel Image" class="carousel-image" id="carouselImage">
+            <button class="carousel-button" id="nextBtn">&#9654;</button>
+        </div>
+    </div>
+    <script>
+        const images = [
+    '1.jpg',
+    '3.jpeg',
+    '4.jpg',
+    '5.jpg',
+    '7.jpg'
+];
+const imageLinks = [
+    'https://namu.wiki/w/%ED%86%A0%ED%86%A0%EB%A1%9C', // '1.jpg'에 연결된 링크
+    'https://example.com/page2', // '7.jpg'에 연결된 링크
+    'https://example.com/page3', // '3.jpeg'에 연결된 링크
+    'https://example.com/page4', // '4.jpg'에 연결된 링크
+    'https://example.com/page5'  // '5.jpg'에 연결된 링크
+];
+
+
+let currentIndex = 0;
+const carouselImage = document.getElementById('carouselImage');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+const clickSound = new Audio('cllick.m4a'); // 효과음 파일 경로
+
+// 이미지 업데이트 함수
+function updateImage() {
+    carouselImage.style.opacity = 0;  // 페이드 아웃 효과
+    setTimeout(() => {
+        carouselImage.src = images[currentIndex];
+        carouselImage.style.opacity = 1;  // 페이드 인 효과
+    }, 200);  // 0.2초 후에 이미지 전환
+}
+
+// 사운드 재생 함수
+function playClickSound() {
+    clickSound.currentTime = 0;  // 재생 위치 초기화
+    clickSound.play();
+}
+
+// 이전 이미지로 이동
+prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    updateImage();
+    playClickSound();
+});
+
+// 다음 이미지로 이동
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    updateImage();
+    playClickSound();
+});
+// 이미지 클릭 시 새로운 페이지로 이동
+carouselImage.addEventListener('click', () => {
+    window.location.href = imageLinks[currentIndex];
+});
+    </script>
+</body>
+</html>
