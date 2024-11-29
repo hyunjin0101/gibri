@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     /* Reset Styles */
+     * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+      /*페이지 기본 설정 */
+     body{
+        display: flex;
+        min-height: 100vh;
+        /* align-items: center; */
+        justify-content: center;
+        background-color: #f2efe4;
+        font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+        overflow-y: scroll; /*주의 스크롤 확인할것*/
+        
+    }
+
+     /* Main container */
+     .container {
+      width: 100%;
+      max-width: 900px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      text-align: center;
+      border: 3px solid #e5d9b9;
+    }
+
+    .intro-section {
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+     /* 소개란 */
+    .intro-container {
+        margin-top: 2%;
+        position: relative;
+        width: 60%;
+        max-width: 400px;
+        background-color: rgba(255, 255, 240, 0.9);
+        padding: 30px;
+        box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+        border: 2px solid #c1e1ec;
+        border-radius: 15px;
+        text-align: center;
+        z-index: 2;
+    }
+
+    /* 소개란 제목 스타일 */
+    .intro-title {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: #5d4037;
+        font-family: 'Garamond', 'Papyrus', sans-serif;
+        letter-spacing: 1px;
+        margin-bottom: 0;
+    }
+
+    /* 소개란 뒷 배경 GIF*/
+    .gif-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 10px;
+        width: 111%;
+        min-height:35vh;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.6; /* GIF 이미지 투명도 */
+        overflow: hidden;
+    }
+
+    /* 소개란 뒷 배경 GIF 속성*/
+    .gif-center {
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        top: 0;
+        border-radius: 10px;
+        width: 90%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.9);
+    }
+
+    /* 상단 게임 메뉴 */
+    .top-right-menu {
+        position: fixed; /* 화면에 고정 */
+        top: 20px;       /* 상단 여백 */
+        right: 20px;     /* 우측 여백 */
+        z-index: 100;    /* GIF보다 위에 위치 */
+        text-align: center;
+    }
+
+    #main-button {
+        background-color: #6abf69; /* 자연 친화적인 초록색 */
+        color: white;
+        border: 2px solid #4e7a4f; /* 어두운 테두리 */
+        padding: 10px 20px;
+        border-radius: 15px; /* 버튼 둥글게 */
+        font-size: 1rem;
+        font-weight: bold;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* 부드러운 그림자 */
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #main-button:hover {
+        background-color: #4e7a4f; /* 마우스 오버 시 어두운 초록색 */
+        color: #f2f2f2; /* 텍스트 밝게 */
+    }
+
+    #dropdown-menu {
+        margin-top: 15px;
+        display: none;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.95); /* 반투명 흰색 배경 */
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* 드롭다운 그림자 */
+    }
+
+    .submenu-button {
+        background-color: #f9f7d9; /* 따뜻한 노란색 */
+        color: #5d4037; /* Ghibli의 차분한 갈색 */
+        border: 2px solid #d4b483; /* 테두리 색상 */
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .hidden {
+    display: none;
+    }
+
+    .submenu-button:hover {
+        background-color: #d4b483; /* 마우스 오버 시 더 밝은 갈색 */
+        color: white;
+    }
+
+    /*상단-본문 컨테이너 분리선 */
+    .divider-horizontal {
+      width: 100%;
+      height: 1px;
+      background-color: rgb(223, 221, 168);
+      margin: 35px 0px 15px;
+    }
+
+    /* 본문 섹션 */
+    .middle-section {
+    background: url('https://i.pinimg.com/736x/b3/f4/0a/b3f40aefb1d6e424544777ed0fbe66d8.jpg') center/cover no-repeat;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 0; /* 여백 제거 */
+    margin: 0; /* 여백 제거 */
+    border-radius: 10px;
+    opacity: 0.9;
+
+
+    }
+
+    /* 본문 컨테이너*/
+    .middle-container {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%; /* 전체 폭으로 설정 */
+    padding: 0; /* 여백 제거 */
+    border-radius: 10px;
+    border: 2px solid #f5c6c6;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 본문 이미지*/
+    .middle-image {
+        max-width: 90%;
+        max-height: 100%;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        border: 2px solid #d4b483;
+        border-radius: 10px;
+        filter: brightness(0.9);
+    }
+
+    /* 본문 이미지 효과*/
+    .middle-image:hover {
+        transform: scale(1.05);
+        filter: brightness(1);
+    }
+
+    .middle-button {
+        background-color: blanchedalmond;
+        border: none;
+        width: 40px;
+        height: 40px;
+        padding: 10px 15px;
+        position: absolute;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+        top: 50%;
+        color: white;
+        transition: transform 0.3s;
+    }
+
+    #prevBtn {
+        left: 10px;
+        background-image: url(9.jpg);
+    }
+
+    #nextBtn {
+        right: 10px;
+        background-image: url(9.jpg);
+    }
+
+    .middle-button:active {
+        transform: translateY(-50%) scale(1.2);
+    }
+
+    /* 본문-하단 컨테이너 분리선 */
+    .divider-horizontal2 {
+      width: 100%;
+      height: 1px;
+      background-color: rgb(223, 221, 168);
+      margin: 15px 0px 15px;
+    }
+
+    /* 하단 섹션 */
+    .bottom-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 0; /* 여백 제거 */
+    margin: 0; /* 여백 제거 */
+    border-radius: 10px;
+    opacity: 0.9;
+    }
+
+    /* 하단 컨테이너*/
+    .bottom-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%; /* 전체 폭으로 설정 */
+    padding: 0; /* 여백 제거 */
+    border-radius: 10px;
+    border: 2px solid #f5c6c6;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 하단 이미지*/
+    .bottom-gif {
+        max-width: 90%;
+        max-height: 100%;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        border: 2px solid #d4b483;
+        border-radius: 10px;
+        /* filter: brightness(0.9); */
+    }
+
+    .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    width: 80%;
+    margin: 50px auto;
+    }
+
+    .grid-item {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    background: lightcoral;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .grid-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    }
+    </style>
+</head>
+<body>
+    <div class="top-right-menu">
+        <button id="main-button" onclick="toggleDropdown()">게임</button>
+        <div id="dropdown-menu">
+          <button class="submenu-button" onclick="clickSubButton(1)">이상형 월드컵</button>
+          <button class="submenu-button" onclick="clickSubButton(2)">OST 맞추기</button>
+          <button class="submenu-button" onclick="clickSubButton(3)">캐릭터 맞추기</button>
+        </div>
+      </div>
+    <div class="container">
+        <!-- 소개란 섹션 -->
+        <div class="intro-section">
+            <!-- 뒷배경 gif -->
+            <div class="gif-container">
+                <img src="가오나시.gif" alt="Ghibli GIF" class="gif-center">
+            </div>
+
+            <!-- 소개란 -->
+            <div class="intro-container">
+                <div class="intro-title"><h1>STUDIO</h1>
+                    <H1>GHIBLI</H1></div>
+            </div>
+
+        </div>
+
+        <!-- 상단//본문 분리선 -->
+        <div class="divider-horizontal"></div>
+
+        <!-- 본문 섹션 -->
+        <div class="middle-section">
+            <div class="middle-container">
+                <button class="middle-button" id="prevBtn">&#9664;</button>
+                <img src="totoro.jpeg" alt="middle Image" class="middle-image" id="middleImage">
+                <button class="middle-button" id="nextBtn">&#9654;</button>
+            </div>
+        </div>
+
+        <!-- 본문//하단 분리선 -->
+        <div class="divider-horizontal2"></div>
+
+        <!-- 하단 섹션 -->
+            <div class="bottom-container">
+                <div class="grid">
+                    <div class="grid-item"><img src="totoro.jpeg" alt="이웃집 토토로"></div>
+                    <div class="grid-item"><img src="cat.jpg" alt="고양이의 보은"></div>
+                    <div class="grid-item"><img src="haul.jpg" alt="하울의 움직이는 성"></div>
+                    <div class="grid-item"><img src="sen.jpg" alt="센과 치히로의 행방불명"></div>
+                    <div class="grid-item"><img src="ponyo.jpg" alt="벼량 위의 포뇨"></div>
+                    <div class="grid-item"><img src="laputa.jpg" alt="천공의 성 라퓨타"></div>
+                  </div>
+            </div>
+
+    <script>
+        const images = [
+    'totoro.jpeg',
+    'cat.jpg',
+    'haul.jpg',
+    'sen.jpg',
+    'ponyo.jpg',
+    'laputa.jpg'
+];
+
+const gif = [
+    '토토로-요가.gif',
+    '흰 gif.gif',
+    '하루 GIF.gif',
+    '보우 gif.gif',
+    '포뇨 GIF 1.gif',
+    '룬 GIF.gif'
+]
+
+const imageLinks = [
+    'https://tngodj.github.io/Totoro/', // '1.jpg'에 연결된 링크
+    'https://tngodj.github.io/Cat/', // '7.jpg'에 연결된 링크
+    'https://tngodj.github.io/Haul/', // '3.jpeg'에 연결된 링크
+    'https://tngodj.github.io/Sen-Chihiro/', // '4.jpg'에 연결된 링크
+    'https://tngodj.github.io/Ponyo/',  // '5.jpg'에 연결된 링크
+    'https://tngodj.github.io/Laputa/' // '6.jpg'에 연결된 링크
+];
+
+let currentIndex = 0;
+const middleImage = document.getElementById('middleImage');
+const bottomgif = document.getElementById('bottomgif');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+
+// const clickSound = new Audio('cllick.m4a'); // 효과음 파일 경로
+
+// 이미지 업데이트 함수
+function updateImage() {
+    middleImage.style.opacity = 0;  // 페이드 아웃 효과
+    setTimeout(() => {
+        middleImage.src = images[currentIndex];
+        middleImage.style.opacity = 1;  // 페이드 인 효과
+    }, 200);  // 0.2초 후에 이미지 전환
+}
+
+function updateGif() {
+    middleImage.style.opacity = 0;  // 페이드 아웃 효과
+    setTimeout(() => {
+        bottomgif.src = images[currentIndex];
+        bottomgif.style.opacity = 1;  // 페이드 인 효과
+    }, 200);  // 0.2초 후에 이미지 전환
+}
+
+// 사운드 재생 함수
+function playClickSound() {
+    clickSound.currentTime = 0;  // 재생 위치 초기화
+    clickSound.play();
+}
+
+// 이전 이미지로 이동
+prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    updateImage();
+    playClickSound();
+});
+
+// 다음 이미지로 이동
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    updateImage();
+    playClickSound();
+});
+// 이미지 클릭 시 새로운 페이지로 이동
+middleImage.addEventListener('click', () => {
+    window.location.href = imageLinks[currentIndex];
+});
+// 클릭된 버튼 ID를 저장하는 Set
+let clickedButtons = new Set();
+
+// 드롭다운 메뉴 표시/숨김
+function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown-menu');
+    if (dropdown.style.display === "none" || dropdown.style.display === "") {
+        dropdown.style.display = "flex"; // 메뉴 보이기
+    } else {
+        dropdown.style.display = "none"; // 메뉴 숨기기
+    }
+}
+
+// 서브 버튼 클릭 처리
+function clickSubButton(buttonId) {
+    switch (buttonId) {
+        case 1:
+            window.location.href = "https://tngodj.github.io/Gibli-WorldCup-Main/"; // 버튼 1 클릭 시 이동할 URL
+            break;
+        case 2:
+            window.location.href = "https://tngodj.github.io/OST_Game"; // 버튼 2 클릭 시 이동할 URL
+            break;
+        case 3:
+            window.location.href = "https://tngodj.github.io/Character-Name-Game/"; // 버튼 3 클릭 시 이동할 URL
+            break;
+        default:
+            console.error("잘못된 버튼 ID입니다."); // 디버그용
+    }
+};
+    </script>       
+</body>
+
+</html>

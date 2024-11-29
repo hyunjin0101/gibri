@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>파노라마 슬라이더</title>
+  <style>
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 700px;
+      perspective: 1200px;
+      overflow: hidden;
+    }
+
+    .carousel {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%) rotateY(0deg);
+      transition: transform 1s ease-in-out;
+    }
+
+    .poster {
+      position: absolute;
+      width: 200px;
+      height: 300px;
+      transform-origin: center;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+
+    .poster img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .poster.active {
+      transform: scale(1.2);
+      z-index: 10;
+    }
+
+    .poster:not(.active) {
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel-container">
+    <div class="carousel">
+      <div class="poster active"><img src="totoro.jpeg" alt="이웃집 토토로"></div>
+      <div class="poster"><img src="cat.jpg" alt="고양이의 보은"></div>
+      <div class="poster"><img src="haul.jpg" alt="하울의 움직이는 성"></div>
+      <div class="poster"><img src="sen.jpg" alt="센과 치히로의 행방불명"></div>
+      <div class="poster"><img src="laputa.jpg" alt="천공의 성 라퓨타"></div>
+    </div>
+  </div>
+
+  <script>
+    const carousel = document.querySelector('.carousel');
+    const posters = document.querySelectorAll('.poster');
+    const posterCount = posters.length;
+    let activeIndex = 0;
+
+    // 포스터를 원형으로 배치
+    function arrangePosters() {
+    const radius = 350;
+    const angleStep = 360 / posterCount; // 각 포스터의 각도 간격
+
+    posters.forEach((poster, index) => {
+        const angle = angleStep * index; // 각 포스터의 위치 각도
+        const x = 300 * Math.cos((angle * Math.PI) / 180); // X 좌표
+        const z = 300 * Math.sin((angle * Math.PI) / 180); // Z 좌표
+
+        poster.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${angle}deg)`;
+        poster.style.zIndex = index === activeIndex ? 10 : 1;
+    });
+    }
+
+    // 중앙 활성 포스터 업데이트
+    function updateCarousel() {
+    const rotationAngle = -360 * (activeIndex / posterCount); // 중앙으로 맞출 회전 각도
+    carousel.style.transform = `translate(-50%, -50%) rotateY(${rotationAngle}deg)`;
+
+    // 활성화 상태 업데이트
+    posters.forEach((poster, index) => {
+        poster.classList.toggle('active', index === activeIndex);
+    });
+    }
+
+    // 자동 순환 기능
+    function startAutoRotate() {
+    setInterval(() => {
+        activeIndex = (activeIndex + 1) % posterCount; // 다음 포스터로 순환
+        updateCarousel();
+    }, 3000); // 3초마다 이동
+    }
+
+    // 초기 실행
+    arrangePosters();
+    updateCarousel();
+    startAutoRotate();
+  </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .character-container {
+    text-align: center;
+}
+
+.character-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* 카드 간격 조정 */
+}
+
+.character-card {
+    width: 150px;
+    height: 240px;
+    /* 카드 높이 조정 */
+    background-color: #333;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* 콘텐츠 간격 확보 */
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+}
+
+.character-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    /* 비율 유지 */
+}
+
+
+.character-info {
+    padding: 10px 0;
+}
+
+.hidden-row {
+    display: none;
+}
+
+.toggle-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: yellow;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toggle-button:hover {
+    background-color: orange;
+}
+    </style>
+</head>
+
+<body>
+    <div class="character-container">
+        <div class="character-row">
+            <div class="character-card">
+                <img src="character1.jpg" alt="Character 1">
+                <div class="character-info">
+                    <div class="character-name">아펠리오스</div>
+                    <div class="character-role">타곤</div>
+                </div>
+            </div>
+            <div class="character-card">
+                <img src="character2.jpg" alt="Character 2">
+                <div class="character-info">
+                    <div class="character-name">아우렐리온 솔</div>
+                    <div class="character-role">타곤</div>
+                </div>
+            </div>
+            <div class="character-card">
+                <img src="character3.jpg" alt="Character 3">
+                <div class="character-info">
+                    <div class="character-name">다이애나</div>
+                    <div class="character-role">타곤</div>
+                </div>
+            </div>
+            <div class="character-card">
+                <img src="character4.jpg" alt="Character 4">
+                <div class="character-info">
+                    <div class="character-name">레오나</div>
+                    <div class="character-role">타곤</div>
+                </div>
+            </div>
+            <div class="character-card">
+                <img src="character5.jpg" alt="Character 5">
+                <div class="character-info">
+                    <div class="character-name">판테온</div>
+                    <div class="character-role">타곤</div>
+                </div>
+            </div>
+        </div>
+        <div class="character-row hidden-row">
+            <div class="character-card">
+                <img src="character6.jpg" alt="Character 6">
+                <div class="character-info">
+                    <div class="character-name">룰루</div>
+                    <div class="character-role">요들</div>
+                </div>
+            </div>
+            <div class="character-card">
+                <img src="character7.jpg" alt="Character 7">
+                <div class="character-info">
+                    <div class="character-name">조이</div>
+                    <div class="character-role">요들</div>
+                </div>
+            </div>
+        </div>
+        <button class="toggle-button">모두 보기</button>
+    </div>
+
+</body>
+<script>
+    document.querySelector('.toggle-button').addEventListener('click', function () {
+    const hiddenRow = document.querySelector('.hidden-row');
+  
+    if (hiddenRow.style.display === 'flex') {
+      hiddenRow.style.display = 'none';
+      this.textContent = '모두 보기';
+    } else {
+      hiddenRow.style.display = 'flex';
+      this.textContent = '닫기';
+    }
+  });
+</script>
+
+</html>

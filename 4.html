@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        /* 컨테이너 스타일 */
+.coverflow-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  margin: 50px auto;
+  perspective: 1000px; /* 3D 원근감을 위한 설정 */
+  overflow: hidden;
+}
+
+/* 커버플로우 내부 */
+.coverflow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+/* 포스터 기본 스타일 */
+.poster {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  background: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.poster img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.poster:nth-child(3){
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid lightblue;
+}
+     </style>
+</head>
+<body>
+    <body>
+        <div class="coverflow-container">
+            <div class="coverflow">
+                <div class="poster"><img src="totoro.jpeg" alt="이웃집 토토로"></div>
+                <div class="poster"><img src="cat.jpg" alt="고양이의 보은"></div>
+                <div class="poster"><img src="haul.jpg" alt="하울의 움직이는 성"></div>
+                <div class="poster"><img src="sen.jpg" alt="센과 치히로의 행방불명"></div>
+                <div class="poster"><img src="ponyo.jpg" alt="벼량 위의 포뇨"></div>
+                <div class="poster"><img src="laputa.jpg" alt="천공의 성 라퓨타"></div>
+            </div>
+          </div>
+    </body>
+</body>
+<script>
+    const posters = document.querySelectorAll('.poster');
+let activeIndex = 2; // 초기 활성화된 포스터(중앙)
+
+// 포스터 배치 함수
+function arrangeCoverflow() {
+  posters.forEach((poster, index) => {
+    const offset = index - activeIndex;
+    const scale = 1 - Math.abs(offset) * 0.1; // 크기 비율
+    const rotateY = offset * 30; // 기울기
+    const translateX = offset * 220; // 좌우 이동 간격
+
+    // 스타일 설정
+    poster.style.transform = `
+      translateX(${translateX}px)
+      scale(${scale})
+      rotateY(${rotateY}deg)
+    `;
+    poster.style.zIndex = -Math.abs(offset); // 중앙 포스터를 위로 표시
+    poster.style.opacity = Math.max(0.3, 1 - Math.abs(offset) * 0.3); // 불투명도 조정
+  });
+}
+
+// 초기 배치
+arrangeCoverflow();
+function moveCoverflow(direction) {
+  if (direction === 'next') {
+    activeIndex = (activeIndex + 1) % posters.length;
+  } else if (direction === 'prev') {
+    activeIndex = (activeIndex - 1 + posters.length) % posters.length;
+  }
+  arrangeCoverflow();
+}
+
+// 키보드 이벤트 추가
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') moveCoverflow('next');
+  if (e.key === 'ArrowLeft') moveCoverflow('prev');
+});
+
+// 자동 이동 (3초마다)
+setInterval(() => moveCoverflow('next'), 3000);
+</script>
+</html>

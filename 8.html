@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+        width: 80%;
+        margin: 50px auto;
+        }
+
+        .grid-item {
+        position: relative;
+        aspect-ratio: 3 / 4;
+        background: lightcoral;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .grid-item:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+    </style>
+</head>
+<body>
+    <body>
+        <div class="grid">
+            <div class="grid-item"><img src="totoro.jpeg" alt="이웃집 토토로"></div>
+            <div class="grid-item"><img src="cat.jpg" alt="고양이의 보은"></div>
+            <div class="grid-item"><img src="haul.jpg" alt="하울의 움직이는 성"></div>
+            <div class="grid-item"><img src="sen.jpg" alt="센과 치히로의 행방불명"></div>
+            <div class="grid-item"><img src="ponyo.jpg" alt="벼량 위의 포뇨"></div>
+            <div class="grid-item"><img src="laputa.jpg" alt="천공의 성 라퓨타"></div>
+          </div>
+          
+    </body>
+</body>
+<script>
+
+</script>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자동 순환 슬라이더</title>
+  <style>
+    .coverflow-container {
+      margin-top: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 300px;
+    }
+
+    .coverflow {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .poster {
+      flex: 0 0 auto;
+      margin-right: 20px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .poster img {
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .poster.active {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+
+    .poster:not(.active) {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+
+    .scrollbar {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .scrollbar-thumb {
+      position: absolute;
+      height: 100%;
+      background: #87ceeb;
+      border-radius: 5px;
+      transition: width 0.3s, left 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="coverflow-container">
+    <div class="scrollbar">
+      <div class="scrollbar-thumb"></div>
+    </div>
+    <div class="coverflow">
+      <div class="poster active"><img src="totoro.jpeg" alt="이웃집 토토로"></div>
+      <div class="poster"><img src="cat.jpg" alt="고양이의 보은"></div>
+      <div class="poster"><img src="haul.jpg" alt="하울의 움직이는 성"></div>
+      <div class="poster"><img src="sen.jpg" alt="센과 치히로의 행방불명"></div>
+      <div class="poster"><img src="laputa.jpg" alt="천공의 성 라퓨타"></div>
+    </div>
+  </div>
+
+  <script>
+    const coverflow = document.querySelector('.coverflow');
+    const posters = document.querySelectorAll('.poster');
+    const scrollbarThumb = document.querySelector('.scrollbar-thumb');
+    let activeIndex = 0;
+    const intervalTime = 3000;
+
+    function updateCoverflow() {
+      const offset = -(activeIndex * 220);
+      coverflow.style.transform = `translateX(${offset}px)`;
+
+      const thumbWidth = 100 / posters.length;
+      scrollbarThumb.style.width = `${thumbWidth}%`;
+      scrollbarThumb.style.left = `${thumbWidth * activeIndex}%`;
+
+      posters.forEach((poster, index) => {
+        poster.classList.toggle('active', index === activeIndex);
+      });
+    }
+
+    function startAutoRotate() {
+      setInterval(() => {
+        activeIndex = (activeIndex + 1) % posters.length;
+        updateCoverflow();
+      }, intervalTime);
+    }
+
+    updateCoverflow();
+    startAutoRotate();
+  </script>
+</body>
+</html>

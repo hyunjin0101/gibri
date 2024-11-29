@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fade-slider {
+        position: relative;
+        width: 1000px;
+        height: 1000px;
+        margin: 50px auto;
+        overflow: hidden;
+        }
+
+        .fade-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 10px 10px 10px 10px;
+        width: 200px;
+        height: 300px;
+        background: lightseagreen;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        opacity: 0;
+        transition: opacity 1s ease;
+        }
+
+        .fade-item.active {
+        opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <body>
+        <div class="fade-slider">
+            <div class="fade-item"><img src="totoro.jpeg" alt="이웃집 토토로"></div>
+            <div class="fade-item"><img src="cat.jpg" alt="고양이의 보은"></div>
+            <div class="fade-item"><img src="haul.jpg" alt="하울의 움직이는 성"></div>
+            <div class="fade-item"><img src="sen.jpg" alt="센과 치히로의 행방불명"></div>
+            <div class="fade-item"><img src="ponyo.jpg" alt="벼량 위의 포뇨"></div>
+            <div class="fade-item"><img src="laputa.jpg" alt="천공의 성 라퓨타"></div>
+          </div>
+          
+    </body>
+</body>
+<script>
+const fadeItems = document.querySelectorAll('.fade-item');
+let fadeIndex = 0;
+
+function updateFadeSlider() {
+  fadeItems.forEach((item, i) => {
+    item.classList.toggle('active', i === fadeIndex);
+  });
+  fadeIndex = (fadeIndex + 1) % fadeItems.length;
+}
+
+setInterval(updateFadeSlider, 3000);
+updateFadeSlider();
+
+</script>
+</html>

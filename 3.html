@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+    <style>
+    /* 슬라이더 컨테이너 */
+    .circle-slider {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 50px auto;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    overflow: hidden;
+    perspective: 1000px;
+    }
+
+    /* 포스터 스타일 */
+    .poster {
+    position: absolute;
+    width: 100px;
+    height: 150px;
+    background: lightblue;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 1s, opacity 1s;
+    transform-origin: 200px 200px; /* 슬라이더의 중심 */
+    }
+
+    .poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    }
+    </style>
+</head>
+<body>
+    <body>
+        <div class="circle-slider">
+            <div class="poster"><img src="totoro.jpeg" alt="이웃집 토토로"></div>
+            <div class="poster"><img src="cat.jpg" alt="고양이의 보은"></div>
+            <div class="poster"><img src="haul.jpg" alt="하울의 움직이는 성"></div>
+            <div class="poster"><img src="sen.jpg" alt="센과 치히로의 행방불명"></div>
+            <div class="poster"><img src="ponyo.jpg" alt="벼량 위의 포뇨"></div>
+            <div class="poster"><img src="laputa.jpg" alt="천공의 성 라퓨타"></div>
+          </div>
+          
+    </body>
+</body>
+<script>
+const posters = document.querySelectorAll('.poster');
+const totalPosters = posters.length;
+
+// 초기 위치 설정
+let angleOffset = 0;
+arrangePosters(angleOffset);
+let isDragging = false;
+let startX = 0;
+
+function arrangePosters(angleOffset = 0) {
+  const radius = 150; // 원형 배치 반지름
+  const angleIncrement = 360 / totalPosters; // 포스터 간 각도 차이
+
+  posters.forEach((poster, index) => {
+    const angle = angleOffset + index * angleIncrement; // 각 포스터의 각도 계산
+    const radian = (angle * Math.PI) / 180; // 라디안 값으로 변환
+
+    // 포스터 위치 계산
+    const x = radius * Math.cos(radian) + 150; // 중심에서 x축 좌표
+    const y = radius * Math.sin(radian) + 150; // 중심에서 y축 좌표
+
+    // 스타일 적용
+    poster.style.transform = `translate(${x}px, ${y}px) rotate(${angle}deg)`;
+    poster.style.zIndex = Math.round(100 + 50 * Math.sin(radian)); // 깊이 효과
+    poster.style.opacity = Math.max(0.3, 0.7 + 0.3 * Math.cos(radian)); // 불투명도 조절
+
+    //클릭 시 특정 포스터 강조
+  posters.forEach((poster, index) => {
+    poster.addEventListener('click', () => {
+        angleOffset = -index * (360 / totalPosters); // 클릭한 포스터를 중심으로 설정
+        arrangePosters(angleOffset);
+    });
+  });
+ });
+}
+
+// 애니메이션 설정 (자동 순환)
+setInterval(() => {
+  angleOffset -= 5; // 각도 조정 (시계 방향 회전)
+  arrangePosters(angleOffset);
+}, 100);
+
+circleSlider.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.pageX;
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (isDragging) {
+    const dx = e.pageX - startX;
+    angleOffset += dx * 0.1; // 드래그 거리만큼 각도 조정
+    arrangePosters(angleOffset);
+    startX = e.pageX; // 시작점 업데이트
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+</script>
+</html>

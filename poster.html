@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Poster Section</title>
+  <style>
+    /* 기본 body 스타일 */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f3e9;
+      color: #4a5c3c;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+
+    /*상단 포스터 섹션*/
+    .poster-section {
+      text-align: center;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px;
+      border: 3px solid #e5d9b9;
+      margin: 20px auto; /* 중앙 정렬 */
+    }
+    .poster-section img {
+      width: 100%;
+      max-width: 6cm;
+      border-radius: 12px;
+      border: 2px solid #e5d9b9;
+    }
+    .poster-title {
+      margin-top: 10px;
+      font-size: 1.6em;
+      color: #5a7b5c;
+      font-weight: bold;
+    }
+    .poster-description {
+      margin-top: 10px;
+      font-size: 1em;
+      line-height: 1.6;
+      color: #4a5c3c;
+    }
+    .poster-links a {
+      display: inline-block;
+      margin: 5px;
+      color: #4a7a5c;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px solid #4a7a5c;
+      cursor: pointer;
+    }
+    .poster-links a:hover {
+      color: #6a8b7c;
+    }
+
+    /* Horizontal Divider line */
+    .divider-horizontal {
+      width: 100%;
+      height: 1px;
+      background-color: #e5d9b9;
+      margin: 20px 0;
+    }
+
+    /*캐릭터 카드 섹션*/
+
+    .character-section {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .character-container {
+      width: 100%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .character-card {
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .character-card:hover {
+        transform: scale(1.05);
+    }
+
+    .character-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .character-details {
+        padding: 10px;
+    }
+
+    .character-name {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin: 5px 0;
+    }
+
+    .character-role {
+        font-size: 0.9rem;
+        color: #bbb;
+    }
+
+    .view-link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #444;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        transition: background-color 0.3s;
+    }
+
+    .view-link:hover {
+        background-color: #555;
+    }
+
+    .hidden-row {
+        display: none;
+    }
+
+    .show-more {
+        padding: 10px 20px;
+        background-color: #444;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+    }
+
+    .show-more:hover {
+        background-color: #555;
+    }
+
+    .more-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    /*하단 포스터 섹션*/
+    .bottom-poster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /*자동 열 배치*/
+      gap: 20px; /*포스터 간격*/
+      justify-content: center; /*중앙 정렬*/
+      align-items: start; 
+      padding: 20px; /*내부 여백*/
+      background-color: #f8f3e9; /* 섹션 배경색 */
+      border-radius: 16px; /* 섹션 전체 둥근 모서리 */
+      max-width: 900px; /*섹션의 최대 너비 제한*/
+      margin: 20px auto; /* 중앙 정렬*/
+      overflow: hidden;
+    }
+
+    .poster-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /*카드 그림자*/
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%; /*카드가 부모의 크기에 맞게*/
+    }
+
+    .poster-card img {
+      width: 100%; /*이미지가 카드의 너비를 채움*/
+      height: auto; /*비율 유지*/
+      border-radius: 12px;
+      border: 2px solid #e5d9b9; /* 테두리 */
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .poster-card:hover img {
+      transform: scale(1.05); /* 확대 효과 */
+      filter: brightness(1.1); /* 밝기 효과 */
+    }
+
+    .poster-title {
+      margin-top: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #4a5c3c;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <!--상단 포스터 섹션 -->
+  <div class="poster-section">
+    <img src="totoro.jpeg" alt="Main Poster">
+    <div class="poster-title">Main Poster Title</div>
+    <div class="poster-description">
+      This is a captivating story set in a world of fantasy and adventure.
+    </div>
+    <div class="poster-links">
+      <a href="#" target="_blank">넷플릭스</a>
+      <a href="#" target="_blank">웨이브</a>
+      <a href="#" target="_blank">왓챠</a>
+    </div>
+  </div>
+
+  <!--캐릭터 카드 섹션-->
+   <!-- Divider Line (Horizontal) -->
+    <div class="divider-horizontal"></div>
+  
+    <!-- Character Cards Section -->
+    <div class="character-container">
+      <!-- 첫 번째 행 -->
+      <div class="character-card">
+        <a href="https://tngodj.github.io/Totoro-Character/" target="_blank">
+          <img src="토토로 4.png" alt="Character 1">
+        </a>
+        <div class="character-details">
+          <div class="character-name">토토로</div>
+          <div class="character-role">귀요미</div>
+          <a href="https://tngodj.github.io/Totoro-Character/" target="_blank" class="view-link">살펴보기</a>
+        </div>
+      </div>
+      <div class="character-card">
+        <a href="https://example.com/character2" target="_blank">
+          <img src="character2.jpg" alt="Character 2">
+        </a>
+        <div class="character-details">
+          <div class="character-name">메이</div>
+          <div class="character-role">어린애</div>
+          <a href="https://example.com/character2" target="_blank" class="view-link">살펴보기</a>
+        </div>
+      </div>
+      <div class="character-card">
+        <a href="https://example.com/character3" target="_blank">
+          <img src="character3.jpg" alt="Character 3">
+        </a>
+        <div class="character-details">
+          <div class="character-name">사스키</div>
+          <div class="character-role">메이 언니</div>
+          <a href="https://example.com/character3" target="_blank" class="view-link">살펴보기</a>
+        </div>
+      </div>
+      <div class="character-card">
+        <a href="https://example.com/character4" target="_blank">
+          <img src="character4.jpg" alt="Character 4">
+        </a>
+        <div class="character-details">
+          <div class="character-name">타츠오</div>
+          <div class="character-role">메이,사스키 아빠</div>
+          <a href="https://example.com/character4" target="_blank" class="view-link">살펴보기</a>
+        </div>
+      </div>
+      <div class="character-card">
+        <a href="https://example.com/character5" target="_blank">
+          <img src="character5.jpg" alt="Character 5">
+        </a>
+        <div class="character-details">
+          <div class="character-name">야스코</div>
+          <div class="character-role">타츠오 아내</div>
+          <a href="https://example.com/character5" target="_blank" class="view-link">살펴보기</a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Hidden Row for Additional Characters -->
+    <div class="character-container hidden-row extra-characters">
+      <div class="character-card">
+        <a href="https://example.com/character6" target="_blank">
+          <img src="character6.jpg" alt="Character 6">
+        </a>
+        <div class="character-details">
+          <div class="character-name">칸타</div>
+          <div class="character-role">사스키 짝남</div>
+          <a href="https://example.com/character6" target="_blank" class="view-link">살펴보기</a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Show More Button -->
+    <div style="text-align: center; margin-top: 20px;">
+      <button class="show-more" id="show-more-extra-characters" onclick="showMore('extra')">더보기</button>
+    </div>
+  
+    <!-- Divider Line (Horizontal) -->
+    <div class="divider-horizontal"></div>
+    <!-- Add more character cards as needed -->
+
+  <!--하단 포스터 섹션 -->
+  <div class="bottom-poster-grid" id="poster-grid">
+    <div class="poster-card">
+      <img src="totoro.jpeg" alt="Poster 1" onclick="changeMainPoster(0)">
+      <p class="poster-title">이웃집 토토로</p>
+    </div>
+    <div class="poster-card">
+      <img src="cat.jpg" alt="Poster 2" onclick="changeMainPoster(1)">
+      <p class="poster-title">고양이의 보은</p>
+    </div>
+    <div class="poster-card">
+      <img src="haul.jpg" alt="Poster 3" onclick="changeMainPoster(2)">
+      <p class="poster-title">하울의 움직이는 성</p>
+    </div>
+    <div class="poster-card">
+      <img src="sen.jpg" alt="Poster 4" onclick="changeMainPoster(3)">
+      <p class="poster-title">센과 치히로의 행방불명</p>
+    </div>
+    <div class="poster-card">
+      <img src="laputa.jpg" alt="Poster 5" onclick="changeMainPoster(4)">
+      <p class="poster-title">천공의 성 라퓨타</p>
+    </div>
+  </div>
+</body>
+<script>
+  function showMore(section){
+  if (section === 'extra') {
+    // 추가 캐릭터를 위한 더보기 버튼
+    const extraHiddenRows = document.querySelectorAll('.hidden-row.extra-characters');
+    extraHiddenRows.forEach(row => (row.style.display = 'flex')); // 추가 캐릭터 표시
+    document.getElementById('show-more-extra-characters').style.display = 'none'; // 버튼 숨김
+  }
+}
+</script>
+</html>

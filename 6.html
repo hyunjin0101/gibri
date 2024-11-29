@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 슬라이더 컨테이너 */
+.drag-slider {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  margin: 50px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background: #f9f9f9;
+}
+
+/* 슬라이더 내부 */
+.slides {
+  display: flex;
+  transition: transform 0.4s ease;
+  cursor: grab;
+}
+
+/* 각 포스터 */
+.slide {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 100px;
+  margin: 0 10px;
+  background: lightblue;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Hover 효과 */
+.slide:hover {
+  transform: scale(1.1);
+}
+
+    </style>
+</head>
+<body>
+    <body>
+        <div class="drag-slider">
+            <div class="slides">
+                <div class="slide"><img src="totoro.jpeg" alt="이웃집 토토로"></div>
+                <div class="slide"><img src="cat.jpg" alt="고양이의 보은"></div>
+                <div class="slide"><img src="haul.jpg" alt="하울의 움직이는 성"></div>
+                <div class="slide"><img src="sen.jpg" alt="센과 치히로의 행방불명"></div>
+                <div class="slide"><img src="ponyo.jpg" alt="벼량 위의 포뇨"></div>
+                <div class="slide"><img src="laputa.jpg" alt="천공의 성 라퓨타"></div>
+            </div>
+         </div>
+          
+    </body>
+</body>
+<!-- <script>
+const slider = document.querySelector('.slides');
+const sliderWidth = slider.scrollWidth;
+const containerWidth = slider.parentElement.offsetWidth;
+
+let isDragging = false;
+let startX = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+
+slider.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.pageX - currentTranslate;
+  slider.style.cursor = 'grabbing';
+});
+
+slider.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const x = e.pageX - startX;
+  currentTranslate = x;
+  slider.style.transform = `translateX(${x}px)`;
+});
+
+slider.addEventListener('mouseup', () => {
+  isDragging = false;
+  prevTranslate = currentTranslate;
+  slider.style.cursor = 'grab';
+});
+
+slider.addEventListener('mouseleave', () => {
+  isDragging = false;
+  slider.style.cursor = 'grab';
+});
+
+slider.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+
+  const x = e.pageX - startX;
+  currentTranslate = Math.max(
+    Math.min(x, 0),
+    containerWidth - sliderWidth
+  ); // 경계 설정
+  slider.style.transform = `translateX(${currentTranslate}px)`;
+});
+
+</script> -->
+</html>
