@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ghibli-Inspired Layout</title>
-  <link rel="stylesheet" href="02.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap">
   <style>
     /* 스타일 설정 */
     * {
@@ -214,17 +214,121 @@
             <a href="https://watcha.com/ko-KR/contents/mJOVYNW?utm_campaign=metadata&utm_source=google&utm_medium=search" id="watcha-link" class="poster-link" target="_blank">왓챠</a>
           </div>
         </div>
-
         <!-- 경계선 -->
         <div class="divider-horizontal"></div>
-        
         <!-- 캐릭터 섹션 -->
-        
+        <div class = "character-section">
+            <div class="character-container">
+                <div class="character-card">
+                    <!-- <a href="https://tngodj.github.io/Totoro-Character/" target="_self"> -->
+                    <img src="토토로.jpeg" alt="Character 1">
+                    </a>
+                    <div class="character-details">
+                    <div class="character-name">토토로</div>
+                    <div class="character-role">귀요미</div>
+                    <a href="https://tngodj.github.io/Totoro-Character/" target="_self" class="view-link">살펴보기</a>
+                    </div>       
+                </div> 
+                <div class="character-card">
+                    <a href="" target="_blank">
+                    <img src="타츠오.png" alt="Character 2">
+                    </a>
+                    <div class="character-details">
+                    <div class="character-name">타츠오</div>
+                    <div class="character-role">어린애</div>
+                    <a href="https://example.com/character2" target="_blank" class="view-link">살펴보기</a>
+                    </div>
+                </div>   
+                <div class="character-card">
+                    <a href="https://example.com/character3" target="_blank">
+                    <img src="메이.png" alt="Character 3">
+                    </a>
+                    <div class="character-details">
+                    <div class="character-name">메이</div>
+                    <div class="character-role">메이 언니</div>
+                    <a href="https://example.com/character3" target="_blank" class="view-link">살펴보기</a>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <a href="https://example.com/character4" target="_blank">
+                    <img src="사스키.png" alt="Character 4">
+                    </a>
+                    <div class="character-details">
+                    <div class="character-name">사스키</div>
+                    <div class="character-role">메이,사스키 아빠</div>
+                    <a href="https://example.com/character4" target="_blank" class="view-link">살펴보기</a>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <a href="https://example.com/character5" target="_blank">
+                    <img src="야스코.png" alt="Character 5">
+                    </a>
+                    <div class="character-details">
+                    <div class="character-name">야스코</div>
+                    <div class="character-role">타츠오 아내</div>
+                    <a href="https://example.com/character5" target="_blank" class="view-link">살펴보기</a>
+                    </div>
+                </div>
+            </div>
+        </div>    
+                <!--더보기 밑 캐릭터-->
             
+                <div class="character-container hidden-row">
+                    <div class="character-card" id = "character-card">
+                    <a href="https://example.com/character6" target="_blank">
+                        <img src="character6.jpg" alt="Character 6">
+                    </a>
+                    <div class="character-details">
+                        <div class="character-name">칸타</div>
+                        <div class="character-role">사스키 짝남</div>
+                        <a href="https://example.com/character6" target="_blank" class="view-link">살펴보기</a>
+                    </div>
+                    </div>
+                    <div class="character-card" id = "character-card">
+                        <a href="https://example.com/character6" target="_blank">
+                        <img src="character6.jpg" alt="Character 6">
+                        </a>
+                        <div class="character-details">
+                        <div class="character-name">칸타의 할머니</div>
+                        <div class="character-role">사스키 짝남</div>
+                        <a href="https://example.com/character6" target="_blank" class="view-link">살펴보기</a>
+                        </div>
+                    </div>
+                    <div class="character-card" id = "character-card">
+                        <a href="https://example.com/character6" target="_blank">
+                        <img src="character6.jpg" alt="Character 6">
+                        </a>
+                        <div class="character-details">
+                        <div class="character-name">고양이 버스</div>
+                        <div class="character-role">사스키 짝남</div>
+                        <a href="https://example.com/character6" target="_blank" class="view-link">살펴보기</a>
+                        </div>
+                    </div>
+                </div>
             
-           
+           <!-- 더보기 버튼 -->
+        <div class="showmore-style">
+            <button class="showmore">더보기</button> 
 </body>
-<script src="02.js"></script>
+<script>
 
+    function showMore() {
+        // 하단 포스터를 위한 더보기 버튼
+        const hiddenRows = document.querySelectorAll('.hidden-row');
+        const showmores = document.querySelectorAll('.showmore');
+        //showmores.forEach(showmore => (showmore.style.display = 'none')); // 더보기 버튼 숨김
+        showmores.forEach(showmore => {
+        showmore.addEventListener('click', () => {
+            // 버튼 텍스트에 따라 동작을 변경
+            if (showmore.textContent === '더보기') {
+                hiddenRows.forEach(row => (row.style.display = 'flex')); // 추가 캐릭터 표시
+                showmore.textContent = '숨기기'; // 버튼 텍스트 변경
+            } else {
+                hiddenRows.forEach(row => (row.style.display = 'none')); // 추가 캐릭터 숨김
+                showmore.textContent = '더보기'; // 버튼 텍스트 변경
+            }
+        });
+    });
+}
 </script>
 
